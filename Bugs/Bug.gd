@@ -12,6 +12,7 @@ export var max_behavior_duration := 10.0
 onready var target := $Target
 onready var sprite := $AnimatedSprite
 onready var behavior_timer := $BehaviorTimer
+onready var flip_timer := $FlipTimer
 
 # This is a hack to bypass issue with setters using onready variables.
 # https://github.com/godotengine/godot-proposals/issues/325
@@ -30,9 +31,16 @@ func _ready() -> void:
 	connect("mouse_entered", self, "_on_mouse_entered")
 	connect("mouse_exited", self, "_on_mouse_exited")
 	behavior_timer.connect("timeout", self, "_update_behavior")
+	flip_timer.connect("timeout", self, "_on_flip_timer_timeout")
 	velocity.x = rng.randf_range(-max_speed * pixels_per_unit, max_speed * pixels_per_unit)
 	velocity.y = rng.randf_range(-max_speed * pixels_per_unit, max_speed * pixels_per_unit)
 	_update_behavior()
+	_on_flip_timer_timeout()
+	
+	
+func _on_flip_timer_timeout() -> void:
+	sprite.flip_h = velocity.x < 0
+	flip_timer.start(rng.randf_range(0.1, 0.5))
 	
 	
 func _physics_process(delta: float) -> void:
@@ -49,8 +57,7 @@ func _physics_process(delta: float) -> void:
 		elif collision_info.normal.y != 0:
 			velocity.y = -old_velocity.y
 			target_velocity.y = -target_velocity.y
-	else:
-		sprite.flip_h = velocity.x < 0
+		
 	
 func _update_behavior() -> void:
 	target_velocity.x = rng.randf_range(-max_speed * pixels_per_unit, max_speed * pixels_per_unit)

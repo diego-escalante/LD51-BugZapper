@@ -8,11 +8,42 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Bug",
+"class": "Bee",
+"language": "GDScript",
+"path": "res://Bugs/Bee.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Bug",
+"language": "GDScript",
+"path": "res://Bugs/Bug.gd"
+}, {
+"base": "Bug",
+"class": "Mosquito",
+"language": "GDScript",
+"path": "res://Bugs/Mosquito.gd"
+}, {
+"base": "StaticBody2D",
+"class": "Wall",
+"language": "GDScript",
+"path": "res://Common/Wall.gd"
+} ]
+_global_script_class_icons={
+"Bee": "",
+"Bug": "",
+"Mosquito": "",
+"Wall": ""
+}
+
 [application]
 
 config/name="LD51"
 run/main_scene="res://Main.tscn"
-config/icon="res://icon.png"
+
+[autoload]
+
+Events="*res://Common/Events.gd"
 
 [display]
 
@@ -37,6 +68,7 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+2d/snapping/use_gpu_pixel_snap=true
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_environment="res://default_env.tres"

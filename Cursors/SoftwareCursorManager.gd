@@ -31,7 +31,18 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 
-func _process(delta) -> void:
+func _notification(what):
+	# Hides software cursor while the real cursor is outside the game window.
+	match what:
+		MainLoop.NOTIFICATION_WM_MOUSE_ENTER:
+			if sprite != null:
+				sprite.visible = true
+		MainLoop.NOTIFICATION_WM_MOUSE_EXIT:
+			if sprite != null:
+				sprite.visible = false
+
+
+func _process(_delta) -> void:
 	
 	if not is_extrapolating:
 		sprite.global_position = sprite.get_global_mouse_position()
@@ -59,12 +70,17 @@ func _process(delta) -> void:
 	pastPastFrameState = pastFrameState
 	pastFrameState = currentFrameState
 
+func set_cursor(new_texture: Texture, new_is_centered: bool) -> void:
+	set_cursor_texture(new_texture)
+	set_is_centered(new_is_centered)
+
 
 func set_cursor_texture(new_texture: Texture) -> void:
 	cursor_texture = new_texture
 	if sprite != null:
 		sprite.texture = cursor_texture
-		
+
+
 func set_is_centered(new_value: bool) -> void:
 	is_centered = new_value
 	if sprite != null:

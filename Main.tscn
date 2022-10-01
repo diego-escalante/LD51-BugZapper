@@ -1,45 +1,48 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Bugs/Bug.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Main.gd" type="Script" id=2]
-[ext_resource path="res://Cursors/CursorTarget.png" type="Texture" id=3]
-[ext_resource path="res://Cursors/CursorPointer.png" type="Texture" id=4]
-[ext_resource path="res://Cursors/SoftwareCursorManager.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Bugs/bugs.png" type="Texture" id=6]
-[ext_resource path="res://Cursors/CursorPointerEight.png" type="Texture" id=7]
-[ext_resource path="res://Cursors/CursorTargetEight.png" type="Texture" id=8]
+[ext_resource path="res://Bugs/Bee.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Bugs/Mosquito.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Common/Wall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Common/TargetingManager.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Node2D"]
-script = ExtResource( 2 )
 
-[node name="SoftwareCursorManager" parent="." instance=ExtResource( 5 )]
+[node name="TargetingManager" parent="." instance=ExtResource( 5 )]
 
-[node name="Bug2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 41, 46 )
+[node name="Bee" parent="." instance=ExtResource( 1 )]
+position = Vector2( 32, 34 )
+state = 2
 
-[node name="CursorTargetEight" type="Sprite" parent="Bug2"]
-position = Vector2( 58, 26 )
-texture = ExtResource( 8 )
+[node name="Bee2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 143, 58 )
+state = 2
 
-[node name="Bug" parent="." instance=ExtResource( 1 )]
-position = Vector2( 203, 79 )
+[node name="Bee3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 95, 88 )
 
-[node name="CursorTarget" type="Sprite" parent="."]
-position = Vector2( 136, 36 )
-texture = ExtResource( 3 )
+[node name="Bee4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 223, 91 )
 
-[node name="CursorPointer" type="Sprite" parent="."]
-position = Vector2( 95, 36 )
-texture = ExtResource( 4 )
+[node name="Mosquito" parent="." instance=ExtResource( 2 )]
+position = Vector2( 93, 35 )
 
-[node name="Bugs" type="Sprite" parent="."]
-position = Vector2( 119, 63 )
-texture = ExtResource( 6 )
+[node name="Mosquito2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 159, 116 )
 
-[node name="CursorTargetEight" type="Sprite" parent="."]
-position = Vector2( 124, 59 )
-texture = ExtResource( 8 )
+[node name="Mosquito3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 40, 117 )
 
-[node name="CursorPointerEight" type="Sprite" parent="."]
-position = Vector2( 140, 76 )
-texture = ExtResource( 7 )
+[node name="Mosquito4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 209, 51 )
+
+[node name="Wall" parent="." instance=ExtResource( 3 )]
+position = Vector2( 160, -90 )
+
+[node name="Wall2" parent="." instance=ExtResource( 3 )]
+position = Vector2( -160, 90 )
+
+[node name="Wall3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 480, 90 )
+
+[node name="Wall4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 160, 270 )

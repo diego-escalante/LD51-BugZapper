@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Cursors/SoftwareCursorManager.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Cursors/CursorTargetEight.png" type="Texture" id=2]
+[ext_resource path="res://Cursors/CursorPointerEight.png" type="Texture" id=3]
+[ext_resource path="res://Common/TargetingManager.gd" type="Script" id=4]
+
+[node name="TargetingManager" type="Node"]
+script = ExtResource( 4 )
+cursor_pointer = ExtResource( 3 )
+cursor_target = ExtResource( 2 )
+
+[node name="SoftwareCursorManager" parent="." instance=ExtResource( 1 )]

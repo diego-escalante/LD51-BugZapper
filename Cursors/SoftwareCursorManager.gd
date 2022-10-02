@@ -85,3 +85,6 @@ func set_is_centered(new_value: bool) -> void:
 	is_centered = new_value
 	if sprite != null:
 		sprite.centered = is_centered
+
+func set_visibility(is_visible: bool) -> void:
+	sprite.visible = is_visible

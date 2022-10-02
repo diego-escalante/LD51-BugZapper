@@ -130,16 +130,17 @@ text = "Created by Diego Escalante in 48 hours for Ludum Dare 51"
 align = 1
 valign = 1
 
-[node name="InstructionsLabel" type="Label" parent="StartScreen"]
+[node name="InstructionsLabel" type="Label" parent="StartScreen" groups=["instructions"]]
 margin_left = 5.0
 margin_top = 38.0
 margin_right = 148.0
 margin_bottom = 141.0
 custom_fonts/font = SubResource( 4 )
-text = "Your AI-assisted bug zapper is buggy. It can't always tell the difference between mosquitoes and other bugs. Between each zapping interval, use the left mouse button to manually switch bug targets to fry all the mosquitoes and save the bees.
+text = "Your AI-assisted bug zapper is buggy. It can't always tell the difference between mosquitoes and other bugs. Between each zapping interval, use the left mouse button to manually switch bug targets to fry the mosquitoes and save the bees.
 
 Target all the mosquitos to start. 
 Zap too many bees and it's game over."
+align = 1
 valign = 1
 autowrap = true
 

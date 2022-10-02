@@ -46,15 +46,17 @@ func _on_wave_completed(wave: int) -> void:
 				
 
 func _on_game_reset() -> void:
+	old_bugs = bugs
+	bugs = []
 	spawn_top_left_corner = $SpawnAreaStart/TopLeftCorner.position
 	spawn_bot_right_corner = $SpawnAreaStart/BottomRightCorner.position
 	_generate_bugs(_get_wave_config(0))
 
 	
-func _clear_bugs(bugs: Array):
-	for bug in bugs:
+func _clear_bugs(bugs_to_clear: Array):
+	for bug in bugs_to_clear:
 		bug.queue_free()
-	bugs.clear()
+	bugs_to_clear.clear()
 
 
 func _generate_bugs(wave_info: Dictionary) -> void:
@@ -107,38 +109,192 @@ func _get_wave_config(wave: int) -> Dictionary:
 		wave_config.bees = wave_config.bees + wave - wave_configs.size()
 		wave_config.mosquitos = wave_config.mosquitos + wave - wave_configs.size()
 		wave_config.targeted_bees = wave_config.targeted_bees + wave - wave_configs.size()
-		print("b: %s, tb: %s, m: %s, tm: %s" % [wave_config.bees, wave_config.targeted_bees, wave_config.mosquitos, wave_config.targeted_mosquitos])
 		return wave_config
 
 func _validate_wave_configs() -> void:
 	assert(not wave_configs.empty())
+	var wave_number = 0
 	for wave_config in wave_configs:
 		assert(wave_config.has("bees"))
 		assert(wave_config.has("mosquitos"))
 		assert(wave_config.has("targeted_bees"))
 		assert(wave_config.has("targeted_mosquitos"))
 		
+		assert(wave_config.bees > 0)
+		assert(wave_config.mosquitos > 0)
+		assert(wave_config.targeted_bees + wave_config.targeted_mosquitos > 0)
 		assert(wave_config.bees >= wave_config.targeted_bees)
 		assert(wave_config.mosquitos >= wave_config.targeted_mosquitos)
-		assert(wave_config.mosquitos >= wave_config.targeted_bees + wave_config.targeted_mosquitos)
+		assert(wave_config.mosquitos >= wave_config.targeted_bees + wave_config.targeted_mosquitos, wave_number)
+		wave_number += 1
 	
 var wave_configs := [
 	{
+		# Tutorial
 		"bees": 5,
 		"mosquitos": 3,
 		"targeted_bees": 2,
 		"targeted_mosquitos": 1,
 	},
 	{
+		# Basic
+		"bees": 7,
+		"mosquitos": 2,
+		"targeted_bees": 2,
+		"targeted_mosquitos": 0,
+	},
+	{
+		# More Bees
+		"bees": 10,
+		"mosquitos": 2,
+		"targeted_bees": 2,
+		"targeted_mosquitos": 0,
+	},
+	{
+		# More Bugs
 		"bees": 10,
 		"mosquitos": 5,
 		"targeted_bees": 5,
 		"targeted_mosquitos": 0,
 	},
 	{
-		"bees": 12,
-		"mosquitos": 6,
+		# More Bees 2
+		"bees": 13,
+		"mosquitos": 5,
 		"targeted_bees": 5,
-		"targeted_mosquitos": 1,
-	}
+		"targeted_mosquitos": 0,
+	},
+	{
+		# More Bees 3
+		"bees": 15,
+		"mosquitos": 5,
+		"targeted_bees": 5,
+		"targeted_mosquitos": 0,
+	},
+	{
+		# More Bugs 2
+		"bees": 15,
+		"mosquitos": 8,
+		"targeted_bees": 8,
+		"targeted_mosquitos": 0,
+	},
+	{
+		# Respite: Some mosquitos already targeted
+		"bees": 3,
+		"mosquitos": 3,
+		"targeted_bees": 1,
+		"targeted_mosquitos": 2,
+	},
+	{
+		# More Bugs and more mosquitos targeted 
+		"bees": 4,
+		"mosquitos": 6,
+		"targeted_bees": 2,
+		"targeted_mosquitos": 4,
+	},
+	{
+		# More Bugs
+		"bees": 10,
+		"mosquitos": 6,
+		"targeted_bees": 2,
+		"targeted_mosquitos": 4,
+	},
+	{
+		# More Bugs 
+		"bees": 10,
+		"mosquitos": 6,
+		"targeted_bees": 4,
+		"targeted_mosquitos": 2,
+	},
+	{
+		# More Bugs 
+		"bees": 1,
+		"mosquitos": 12,
+		"targeted_bees": 1,
+		"targeted_mosquitos": 11,
+	},
+	{
+		# More Bugs 
+		"bees": 7,
+		"mosquitos": 14,
+		"targeted_bees": 4,
+		"targeted_mosquitos": 10,
+	},
+	{
+		# Respite: Not all mosquitos need to be targeted.
+		"bees": 1,
+		"mosquitos": 3,
+		"targeted_bees": 1,
+		"targeted_mosquitos": 0,
+	},
+	{
+		"bees": 2,
+		"mosquitos": 6,
+		"targeted_bees": 2,
+		"targeted_mosquitos": 0,
+	},
+	{
+		"bees": 2,
+		"mosquitos": 6,
+		"targeted_bees": 2,
+		"targeted_mosquitos": 2,
+	},
+	{
+		"bees": 6,
+		"mosquitos": 6,
+		"targeted_bees": 2,
+		"targeted_mosquitos": 2,
+	},
+	{
+		"bees": 12,
+		"mosquitos": 12,
+		"targeted_bees": 1,
+		"targeted_mosquitos": 11,
+	},
+	{
+		"bees": 30,
+		"mosquitos": 1,
+		"targeted_bees": 1,
+		"targeted_mosquitos": 0,
+	},
+	{
+		"bees": 30,
+		"mosquitos": 1,
+		"targeted_bees": 1,
+		"targeted_mosquitos": 0,
+	},
+	{
+		"bees": 15,
+		"mosquitos": 15,
+		"targeted_bees": 6,
+		"targeted_mosquitos": 7,
+	},
+	{
+		#22
+		"bees": 1,
+		"mosquitos": 30,
+		"targeted_bees": 1,
+		"targeted_mosquitos": 29,
+	},
+	{
+		#23
+		"bees": 40,
+		"mosquitos": 1,
+		"targeted_bees": 1,
+		"targeted_mosquitos": 0,
+	},
+	{
+		#24
+		"bees": 20,
+		"mosquitos": 20,
+		"targeted_bees": 7,
+		"targeted_mosquitos": 5,
+	},
+	{
+		#25
+		"bees": 21,
+		"mosquitos": 21,
+		"targeted_bees": 7,
+		"targeted_mosquitos": 7,
+	},
 ]

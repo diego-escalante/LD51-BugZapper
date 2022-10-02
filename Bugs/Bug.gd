@@ -11,8 +11,10 @@ export var max_behavior_duration := 10.0
 
 onready var target := $Target
 onready var sprite := $AnimatedSprite
+onready var zap_circle := $ZapCircle
 onready var behavior_timer := $BehaviorTimer
 onready var flip_timer := $FlipTimer
+onready var smoke_particles := $SmokeParticles
 
 # This is a hack to bypass issue with setters using onready variables.
 # https://github.com/godotengine/godot-proposals/issues/325
@@ -88,3 +90,14 @@ func update_target() -> void:
 		BugState.UNTARGETED:
 			target.modulate.a = 0		
 
+func zap():
+	sprite.modulate = Color.black
+	zap_circle.visible = true
+	target.visible = false
+	yield(VisualServer, "frame_post_draw")
+	SoundPlayer.play_sound(SoundPlayer.ZAP)
+	FrameFreezer.freeze(75)
+	smoke_particles.emitting = true
+	zap_circle.visible = false
+	sprite.visible = false
+	Events.emit_signal("zap")

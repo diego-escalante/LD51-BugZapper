@@ -1,5 +1,7 @@
 extends Node
 
+class_name TargetManager
+
 export var cursor_pointer: Texture
 export var cursor_target: Texture
 export var cursor_pointer_is_centered := false
@@ -27,15 +29,18 @@ func _unhandled_input(event: InputEvent) -> void:
 				active_bug = null
 				hovered_bug.set_state(2)
 				set_is_switching_targets(false)
+				SoundPlayer.play_sound(SoundPlayer.CLICK)
 			elif hovered_bug == null and active_bug != null:
 				active_bug.set_state(2)
 				active_bug = null
 				set_is_switching_targets(false)
+				SoundPlayer.play_sound(SoundPlayer.CLICK)
 		else:
 			if hovered_bug != null and hovered_bug.state == 2:
 				active_bug = hovered_bug
 				active_bug.set_state(1)
 				set_is_switching_targets(true)
+				SoundPlayer.play_sound(SoundPlayer.CLICK)
 
 	
 func _on_bug_mouse_entered(bug: Bug) -> void:
@@ -55,3 +60,6 @@ func _update_targeting():
 func set_is_switching_targets(new_value: bool) -> void:
 	is_switching_targets = new_value
 	_update_targeting()
+
+func set_visibility(is_visible: bool) -> void:
+	cursor_manager.set_visibility(is_visible)

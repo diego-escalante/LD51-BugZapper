@@ -5,7 +5,7 @@
 [ext_resource path="res://Cursors/CursorPointerEight.png" type="Texture" id=3]
 [ext_resource path="res://Common/TargetingManager.gd" type="Script" id=4]
 
-[node name="TargetingManager" type="Node"]
+[node name="TargetingManager" type="Node" groups=["target_manager"]]
 script = ExtResource( 4 )
 cursor_pointer = ExtResource( 3 )
 cursor_target = ExtResource( 2 )

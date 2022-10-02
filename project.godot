@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Bugs/Mosquito.gd"
 }, {
+"base": "Node",
+"class": "TargetManager",
+"language": "GDScript",
+"path": "res://Common/TargetingManager.gd"
+}, {
 "base": "StaticBody2D",
 "class": "Wall",
 "language": "GDScript",
@@ -33,6 +38,7 @@ _global_script_class_icons={
 "Bee": "",
 "Bug": "",
 "Mosquito": "",
+"TargetManager": "",
 "Wall": ""
 }
 
@@ -45,6 +51,8 @@ run/main_scene="res://Main.tscn"
 
 Events="*res://Common/Events.gd"
 GameManager="*res://Common/GameManager.tscn"
+FrameFreezer="*res://Common/FrameFreezer.gd"
+SoundPlayer="*res://SoundFx/SoundPlayer.tscn"
 
 [display]
 

@@ -3,4 +3,4 @@
 [ext_resource path="res://Interface/Themes/Font/default_font.tres" type="DynamicFont" id=1]
 
 [resource]
-Label/fonts/font = ExtResource( 1 )
+Label/fonts/Font = ExtResource( 1 )

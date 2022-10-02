@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Common/SpawnManager.gd" type="Script" id=1]
+
+[node name="SpawnManager" type="Node"]
+script = ExtResource( 1 )
+
+[node name="SpawnAreaStart" type="Node" parent="."]
+
+[node name="TopLeftCorner" type="Node2D" parent="SpawnAreaStart"]
+position = Vector2( 170, 10 )
+
+[node name="BottomRightCorner" type="Node2D" parent="SpawnAreaStart"]
+position = Vector2( 310, 151 )
+
+[node name="SpawnAreaOdd" type="Node" parent="."]
+
+[node name="TopLeftCorner" type="Node2D" parent="SpawnAreaOdd"]
+position = Vector2( 350, 10 )
+
+[node name="BottomRightCorner" type="Node2D" parent="SpawnAreaOdd"]
+position = Vector2( 650, 151 )
+
+[node name="SpawnAreaEven" type="Node" parent="."]
+
+[node name="TopLeftCorner" type="Node2D" parent="SpawnAreaEven"]
+position = Vector2( 690, 10 )
+
+[node name="BottomRightCorner" type="Node2D" parent="SpawnAreaEven"]
+position = Vector2( 990, 151 )

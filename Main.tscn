@@ -1,32 +1,166 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://Common/GameManager.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Common/SpawnManager.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Interface/Interface.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Common/Wall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Common/Wall.gd" type="Script" id=3]
+[ext_resource path="res://Interface/StartScreen/bg.png" type="Texture" id=4]
 [ext_resource path="res://Common/TargetingManager.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Interface/Themes/Font/Jua-Regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Interface/Themes/Font/Modak-Regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Common/CameraManager.tscn" type="PackedScene" id=8]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 5, 90 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 500, 9 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 25
+use_filter = true
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 4
+extra_spacing_space = 2
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 8
+use_filter = true
+extra_spacing_top = 1
+extra_spacing_bottom = -3
+extra_spacing_space = 2
+font_data = ExtResource( 6 )
 
 [node name="Main" type="Node"]
 
-[node name="Interface" parent="." instance=ExtResource( 2 )]
-margin_top = 161.0
-margin_bottom = 0.0
+[node name="SpawnManager" parent="." instance=ExtResource( 1 )]
 
-[node name="GameManager" parent="." instance=ExtResource( 1 )]
+[node name="TopLeftCorner" parent="SpawnManager/SpawnAreaStart" index="0"]
+position = Vector2( 173, 10 )
+
+[node name="BottomRightCorner" parent="SpawnManager/SpawnAreaStart" index="1"]
+position = Vector2( 310, 152 )
+
+[node name="TopLeftCorner" parent="SpawnManager/SpawnAreaOdd" index="0"]
+position = Vector2( 340, 10 )
+
+[node name="BottomRightCorner" parent="SpawnManager/SpawnAreaOdd" index="1"]
+position = Vector2( 640, 152 )
+
+[node name="TopLeftCorner" parent="SpawnManager/SpawnAreaEven" index="0"]
+position = Vector2( 670, 10 )
+
+[node name="BottomRightCorner" parent="SpawnManager/SpawnAreaEven" index="1"]
+position = Vector2( 970, 152 )
 
 [node name="TargetingManager" parent="." instance=ExtResource( 5 )]
 
-[node name="Wall" parent="." instance=ExtResource( 3 )]
-visible = false
-position = Vector2( 160, -90 )
+[node name="VerticalWall1" type="StaticBody2D" parent="."]
+position = Vector2( 325, 90 )
+script = ExtResource( 3 )
 
-[node name="Wall2" parent="." instance=ExtResource( 3 )]
-visible = false
-position = Vector2( -160, 90 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VerticalWall1"]
+shape = SubResource( 5 )
 
-[node name="Wall3" parent="." instance=ExtResource( 3 )]
-visible = false
-position = Vector2( 480, 90 )
+[node name="VerticalWall2" type="StaticBody2D" parent="."]
+position = Vector2( 158, 90 )
+script = ExtResource( 3 )
 
-[node name="Wall4" parent="." instance=ExtResource( 3 )]
-visible = false
-position = Vector2( 160, 252 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VerticalWall2"]
+shape = SubResource( 5 )
+
+[node name="VerticalWall3" type="StaticBody2D" parent="."]
+position = Vector2( 655, 90 )
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VerticalWall3"]
+shape = SubResource( 5 )
+
+[node name="VerticalWall4" type="StaticBody2D" parent="."]
+position = Vector2( 985, 90 )
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VerticalWall4"]
+shape = SubResource( 5 )
+
+[node name="HorizontalWall1" type="StaticBody2D" parent="."]
+position = Vector2( 490, 171 )
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HorizontalWall1"]
+shape = SubResource( 6 )
+
+[node name="HorizontalWall2" type="StaticBody2D" parent="."]
+position = Vector2( 490, -9 )
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HorizontalWall2"]
+shape = SubResource( 6 )
+
+[node name="StartScreen" type="NinePatchRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -80.0
+margin_bottom = 61.0
+texture = ExtResource( 4 )
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+
+[node name="TitleLabel" type="Label" parent="StartScreen"]
+margin_right = 150.0
+margin_bottom = 38.0
+custom_fonts/font = SubResource( 2 )
+text = "Bug Zapper"
+align = 1
+valign = 1
+
+[node name="AuthorLabel" type="Label" parent="StartScreen"]
+margin_top = 32.0
+margin_right = 150.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 3 )
+text = "Created by Diego Escalante in 48 hours for Ludum Dare 51"
+align = 1
+valign = 1
+
+[node name="InstructionsLabel" type="Label" parent="StartScreen"]
+margin_left = 5.0
+margin_top = 38.0
+margin_right = 148.0
+margin_bottom = 141.0
+custom_fonts/font = SubResource( 4 )
+text = "Your AI-assisted bug zapper is buggy. It can't always tell the difference between mosquitoes and other bugs. Between each zapping interval, use the left mouse button to manually switch bug targets to fry all the mosquitoes and save the bees.
+
+Target all the mosquitos to start. 
+Zap too many bees and it's game over."
+valign = 1
+autowrap = true
+
+[node name="CameraManager" parent="." instance=ExtResource( 8 )]
+start_game_position = Vector2( 160, 90 )
+odd_wave_position = Vector2( 490, 90 )
+even_wave_position = Vector2( 820, 90 )
+
+[node name="Interface" parent="CameraManager" instance=ExtResource( 2 )]
+margin_left = -160.0
+margin_top = 71.0
+margin_right = -160.0
+margin_bottom = 71.0
+
+[node name="StartScreenPosition" type="Node2D" parent="."]
+position = Vector2( 160, 90 )
+
+[node name="OddLevelPosition" type="Node2D" parent="."]
+position = Vector2( 490, 90 )
+
+[node name="EvenLevelPosition" type="Node2D" parent="."]
+position = Vector2( 820, 90 )
+
+[editable path="SpawnManager"]

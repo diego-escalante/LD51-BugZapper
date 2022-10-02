@@ -47,6 +47,10 @@ _global_script_class_icons={
 config/name="LD51"
 run/main_scene="res://Main.tscn"
 
+[audio]
+
+output_latency.web=70
+
 [autoload]
 
 Events="*res://Common/Events.gd"

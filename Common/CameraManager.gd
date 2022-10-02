@@ -5,7 +5,7 @@ export var transition_duration := 2
 export var start_game_position: Vector2
 export var odd_wave_position: Vector2
 export var even_wave_position: Vector2
-export var shake_duration := 0.5
+export var shake_duration := 0.25
 export var amplitude := 2
 export(float, EASE) var DAMP_EASING := 1.0
 

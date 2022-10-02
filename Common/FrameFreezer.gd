@@ -1,4 +1,7 @@
 extends Node
 
-func freeze(delay_ms: int) -> void:
-	OS.delay_msec(delay_ms)
+func freeze(secs: float) -> void:
+	var time_scale = 0.01
+	Engine.time_scale = time_scale
+	yield(get_tree().create_timer(secs * time_scale), "timeout")
+	Engine.time_scale = 1.0

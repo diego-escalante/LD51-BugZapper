@@ -258,40 +258,33 @@ var wave_configs := [
 		"targeted_mosquitos": 0,
 	},
 	{
-		"bees": 30,
-		"mosquitos": 1,
-		"targeted_bees": 1,
-		"targeted_mosquitos": 0,
-	},
-	{
 		"bees": 15,
 		"mosquitos": 15,
 		"targeted_bees": 6,
 		"targeted_mosquitos": 7,
 	},
 	{
-		#22
+		
 		"bees": 1,
 		"mosquitos": 30,
 		"targeted_bees": 1,
 		"targeted_mosquitos": 29,
 	},
 	{
-		#23
-		"bees": 40,
+		#22
+		"bees": 50,
 		"mosquitos": 1,
 		"targeted_bees": 1,
 		"targeted_mosquitos": 0,
 	},
 	{
-		#24
+		
 		"bees": 20,
 		"mosquitos": 20,
 		"targeted_bees": 7,
 		"targeted_mosquitos": 5,
 	},
 	{
-		#25
 		"bees": 21,
 		"mosquitos": 21,
 		"targeted_bees": 7,

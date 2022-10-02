@@ -96,7 +96,8 @@ func zap():
 	target.visible = false
 	yield(VisualServer, "frame_post_draw")
 	SoundPlayer.play_sound(SoundPlayer.ZAP)
-	FrameFreezer.freeze(75)
+	FrameFreezer.freeze(0.075)
+	yield(get_tree().create_timer(0.001), "timeout")
 	smoke_particles.emitting = true
 	zap_circle.visible = false
 	sprite.visible = false

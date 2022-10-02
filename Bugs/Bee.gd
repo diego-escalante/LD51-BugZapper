@@ -9,7 +9,8 @@ func zap():
 	get_tree().get_nodes_in_group("background")[0].modulate = Color(0.5,0.5,0.5)
 	yield(VisualServer, "frame_post_draw")
 	SoundPlayer.play_sound(SoundPlayer.WRONG)
-	FrameFreezer.freeze(500)
+	FrameFreezer.freeze(0.5)
+	yield(get_tree().create_timer(0.05), "timeout")
 	SoundPlayer.play_sound(SoundPlayer.ZAP)
 	get_tree().get_nodes_in_group("background")[0].modulate = Color.white
 	target.visible = false

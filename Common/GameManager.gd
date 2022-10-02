@@ -62,6 +62,7 @@ func _wave_over() -> void:
 			bee_lives = max(0, bee_lives - 1)
 			Events.emit_signal("bee_lives_update", bee_lives)
 			z_interval *= 1.5
+		yield(Events, "zap")
 		yield(get_tree().create_timer(z_interval), "timeout")
 		
 	if bee_lives == 0:

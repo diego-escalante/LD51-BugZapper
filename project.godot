@@ -44,6 +44,7 @@ run/main_scene="res://Main.tscn"
 [autoload]
 
 Events="*res://Common/Events.gd"
+GameManager="*res://Common/GameManager.tscn"
 
 [display]
 

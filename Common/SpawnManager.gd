@@ -10,7 +10,6 @@ var spawn_bot_right_corner: Vector2
 var bugs := []
 var old_bugs := []
 var rand := RandomNumberGenerator.new()
-var current_wave := 0
 
 func _ready() -> void:
 	_validate_wave_configs()
@@ -19,7 +18,6 @@ func _ready() -> void:
 	rand.randomize()
 	Events.connect("game_reset", self, "_on_game_reset")
 	Events.connect("wave_completed", self, "_on_wave_completed")
-	Events.connect("switched_target", self, "_on_switched_target")
 	Events.connect("screen_transitioned", self, "_on_screen_transitioned")
 	_on_game_reset()
 
@@ -33,37 +31,24 @@ func _unhandled_input(event) -> void:
 		Events.emit_signal("wave_completed", 1)
 	elif event is InputEventKey and event.scancode == KEY_UP and event.is_pressed():
 		Events.emit_signal("wave_completed", 2)
-		
 
-# This callback only exists to start the game, as there is no timer to zap bugs automatically.
-func _on_switched_target() -> void:
-#	if current_wave != 0:
-#		return
-	for bug in bugs:
-		if bug is Bee and bug.state == 2:
-			return
-		if bug is Mosquito and bug.state != 2:
-			return
-	Events.emit_signal("wave_completed", current_wave)
 	
 func _on_wave_completed(wave: int) -> void:
 	old_bugs = bugs
 	bugs = []
-	current_wave = wave + 1
-	if current_wave % 2 == 1:
+	if (wave + 1) % 2 == 1:
 		spawn_top_left_corner = $SpawnAreaOdd/TopLeftCorner.position
 		spawn_bot_right_corner = $SpawnAreaOdd/BottomRightCorner.position
 	else:
 		spawn_top_left_corner = $SpawnAreaEven/TopLeftCorner.position
 		spawn_bot_right_corner = $SpawnAreaEven/BottomRightCorner.position
-	_generate_bugs(_get_wave_config(current_wave))
+	_generate_bugs(_get_wave_config(wave + 1))
 				
 
 func _on_game_reset() -> void:
 	spawn_top_left_corner = $SpawnAreaStart/TopLeftCorner.position
 	spawn_bot_right_corner = $SpawnAreaStart/BottomRightCorner.position
-	current_wave = 0
-	_generate_bugs(_get_wave_config(current_wave))
+	_generate_bugs(_get_wave_config(0))
 
 	
 func _clear_bugs(bugs: Array):
@@ -81,6 +66,7 @@ func _generate_bugs(wave_info: Dictionary) -> void:
 		_spawn_bug(mosquito_scene, true)
 	for i in wave_info.mosquitos - wave_info.targeted_mosquitos:
 		_spawn_bug(mosquito_scene, false)
+	Events.emit_signal("bugs_spawned", bugs)
 
 func _spawn_bug(bug_scene: PackedScene, is_targeted: bool) -> void:
 	while true:

@@ -27,12 +27,10 @@ func _unhandled_input(event: InputEvent) -> void:
 				active_bug = null
 				hovered_bug.set_state(2)
 				set_is_switching_targets(false)
-				Events.emit_signal("switched_target")
 			elif hovered_bug == null and active_bug != null:
 				active_bug.set_state(2)
 				active_bug = null
 				set_is_switching_targets(false)
-				Events.emit_signal("switched_target")
 		else:
 			if hovered_bug != null and hovered_bug.state == 2:
 				active_bug = hovered_bug

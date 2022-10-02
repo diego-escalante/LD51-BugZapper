@@ -39,7 +39,7 @@ func _on_game_reset() -> void:
 	
 func _on_wave_completed(wave: int) -> void:
 	old_position = global_position
-	if wave % 2 == 0:
+	if wave % 2 == 1:
 		new_position = even_wave_position
 	else:
 		new_position = odd_wave_position

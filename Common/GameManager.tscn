@@ -15,4 +15,4 @@ one_shot = true
 position = Vector2( 10, 10 )
 
 [node name="BottomRightCorner" type="Node2D" parent="SpawnArea"]
-position = Vector2( 310, 170 )
+position = Vector2( 310, 151 )

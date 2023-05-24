@@ -11,6 +11,7 @@ This game was made in 48 hours for the Ludum Dare 51 jam. The theme of the jam w
 ## Links
 * [Bug Zapper on itch.io](https://diego-escalante.itch.io/bug-zapper): Play the game directly on your browser here.
 * [Jam Submission Page](https://ldjam.com/events/ludum-dare/51/bug-zapper): Feedback on the game by other participants can be found here.
+* [Development Timelapse](https://youtu.be/AiCOnTftI5k): A timelapse video of the game being made during the jam.
 
 ## Tools Used
 * [Godot](https://godotengine.org/) as the game engine.

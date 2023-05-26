@@ -6,7 +6,7 @@
 </picture>
 
 ## [Play the game here!](https://diego-escalante.itch.io/bug-zapper)
-This game was made in 48 hours for the Ludum Dare 51 jam. The theme of the jam was "Every 10 Seconds." It was made with Godot 3 using GDScript. 
+This game was made in 48 hours for the Ludum Dare 51 jam in September 2022. The theme of the jam was "Every 10 Seconds." It was made with Godot 3 using GDScript. 
 
 ## Links
 * [Bug Zapper on itch.io](https://diego-escalante.itch.io/bug-zapper): Play the game directly on your browser here.

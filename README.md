@@ -24,7 +24,7 @@ This game was made in 48 hours for the Ludum Dare 51 jam in September 2022. The 
 1. Make sure you have [Godot 3](https://godotengine.org/download/3.x) installed, as that is the version of the engine that was used for this game. No need to get the .NET version of Godot, as this project purely uses GDScript.
 2. Clone this repo in your desired directory: `git clone https://github.com/diego-escalante/LD51-BugZapper.git`
 3. Start up Godot. In the initial Project Manager window, click Import and choose the `project.godot` file at the root of your cloned repo.
-4. One the engine opens up the project, you can run the game by using the Play buttons on the top right.
+4. Once the engine opens up the project, you can run the game by using the Play buttons on the top right.
 
 ## Rankings
 The game received the following rankings in the game jam:
